@@ -176,6 +176,45 @@
     background: var(--panel);
   }
   figcaption { font-family: var(--mono); font-size: .75rem; color: var(--muted); margin-top: 9px; }
+
+  /* Screenshots open full-size: these are dense data tables, and at column width
+     the numbers are unreadable, which defeats the point of showing them. */
+  .shot-btn {
+    display: block; width: 100%; padding: 0; border: 0; background: none;
+    cursor: zoom-in; position: relative;
+  }
+  .shot-btn .zoom {
+    position: absolute; right: 10px; bottom: 10px;
+    font-family: var(--mono); font-size: .68rem; letter-spacing: .06em;
+    text-transform: uppercase;
+    background: #0d1117d9; border: 1px solid var(--rule); color: var(--muted);
+    border-radius: 3px; padding: 4px 8px;
+    opacity: 0; transition: opacity .15s ease;
+  }
+  .shot-btn:hover .zoom, .shot-btn:focus-visible .zoom { opacity: 1; }
+  .shot-btn:hover img { border-color: var(--gold-dim); }
+
+  #lb {
+    position: fixed; inset: 0; z-index: 100;
+    display: none; align-items: center; justify-content: center;
+    background: #06090ded; padding: 24px;
+  }
+  #lb.open { display: flex; }
+  #lb figure { display: flex; flex-direction: column; gap: 10px; max-width: 100%; max-height: 100%; }
+  #lb img {
+    max-width: 96vw; max-height: 86vh; width: auto; height: auto;
+    object-fit: contain;
+    border: 1px solid var(--rule); border-radius: 4px; background: var(--panel);
+  }
+  #lb figcaption { margin: 0; text-align: center; }
+  #lb .close {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: 1px solid var(--rule); border-radius: 4px;
+    color: var(--text); font-family: var(--mono); font-size: .8rem;
+    padding: 6px 12px; cursor: pointer;
+  }
+  #lb .close:hover { border-color: var(--gold); color: var(--gold); }
+  #lb .loading { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
   figcaption b { color: var(--text); font-weight: 600; }
 
   /* Features as hairline-ruled rows — the same dense-table logic the app uses,
@@ -332,19 +371,19 @@
       </div>
       <div class="shots">
         <figure>
-          <img src="img/dashboard.jpg" alt="Dashboard listing every character with location, training and net worth" loading="lazy">
+          <button class="shot-btn" type="button" data-large="img/large/dashboard.jpg" aria-label="Enlarge: Dashboard listing every character with location, training and net worth"><img src="img/dashboard.jpg" alt="Dashboard listing every character with location, training and net worth" loading="lazy"><span class="zoom">Click to enlarge</span></button>
           <figcaption><b>Dashboard.</b> Every alt at a glance — where they're docked, what they're training, wallet and asset value, plus a warning when planetary extractors are about to run dry.</figcaption>
         </figure>
         <figure>
-          <img src="img/production-plan.jpg" alt="Production plan for a Raven showing bill of materials, fees and profit" loading="lazy">
+          <button class="shot-btn" type="button" data-large="img/large/production-plan.jpg" aria-label="Enlarge: Production plan for a Raven showing bill of materials, fees and profit"><img src="img/production-plan.jpg" alt="Production plan for a Raven showing bill of materials, fees and profit" loading="lazy"><span class="zoom">Click to enlarge</span></button>
           <figcaption><b>Production planner.</b> Full bill of materials with stock coverage, structure and rig bonuses, job install fees, and profit against market or contract prices.</figcaption>
         </figure>
         <figure>
-          <img src="img/prices.jpg" alt="Price table comparing Jita and secondary trade hubs" loading="lazy">
+          <button class="shot-btn" type="button" data-large="img/large/prices.jpg" aria-label="Enlarge: Price table comparing Jita and secondary trade hubs"><img src="img/prices.jpg" alt="Price table comparing Jita and secondary trade hubs" loading="lazy"><span class="zoom">Click to enlarge</span></button>
           <figcaption><b>Prices.</b> Jita plus Amarr, Dodixie, Rens, Hek and any citadel you care about, side by side. Click an item for its price history and the live order book.</figcaption>
         </figure>
         <figure>
-          <img src="img/planets.jpg" alt="Planetary interaction colonies with extractor expiry countdowns" loading="lazy">
+          <button class="shot-btn" type="button" data-large="img/large/planets.jpg" aria-label="Enlarge: Planetary interaction colonies with extractor expiry countdowns"><img src="img/planets.jpg" alt="Planetary interaction colonies with extractor expiry countdowns" loading="lazy"><span class="zoom">Click to enlarge</span></button>
           <figcaption><b>Planetary interaction.</b> Every colony's extractor timers counting down, the factory chains they feed, and what's sitting in storage.</figcaption>
         </figure>
       </div>
@@ -562,6 +601,64 @@
       var btn = document.getElementById("dl-btn");
       if (btn) btn.href = RELEASES;
     });
+})();
+</script>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Screenshot">
+  <button class="close" type="button" id="lb-close">Close (Esc)</button>
+  <figure>
+    <span class="loading" id="lb-loading">Loading…</span>
+    <img id="lb-img" alt="">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+</div>
+<script>
+/* Screenshot lightbox. No library: one overlay, reused. The large copies are only
+   fetched when something is actually opened, so the page itself stays light. */
+(function () {
+  var lb = document.getElementById("lb");
+  if (!lb) return;
+  var img = document.getElementById("lb-img"),
+      cap = document.getElementById("lb-cap"),
+      loading = document.getElementById("lb-loading"),
+      closeBtn = document.getElementById("lb-close"),
+      opener = null;
+
+  function open(btn) {
+    opener = btn;
+    var thumb = btn.querySelector("img");
+    var fig = btn.closest("figure");
+    var caption = fig ? fig.querySelector("figcaption") : null;
+    cap.textContent = caption ? caption.textContent.trim() : (thumb ? thumb.alt : "");
+    img.alt = thumb ? thumb.alt : "";
+    /* Show the thumbnail immediately so there's no blank frame, then swap in the
+       large file once it has loaded. */
+    img.src = thumb ? thumb.src : "";
+    loading.style.display = "";
+    var big = new Image();
+    big.onload = function () { img.src = big.src; loading.style.display = "none"; };
+    big.onerror = function () { loading.style.display = "none"; };   // keep the thumbnail
+    big.src = btn.dataset.large;
+    lb.classList.add("open");
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
+  }
+
+  function close() {
+    lb.classList.remove("open");
+    document.body.style.overflow = "";
+    img.src = "";
+    if (opener) { opener.focus(); opener = null; }   /* return focus where it came from */
+  }
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".shot-btn");
+    if (btn) { e.preventDefault(); open(btn); return; }
+    /* Clicking the backdrop or the close button dismisses it; clicking the image does not. */
+    if (lb.classList.contains("open") && (e.target === lb || e.target === closeBtn)) close();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && lb.classList.contains("open")) close();
+  });
 })();
 </script>
 </body>
