@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A free, open-source EVE Online industry tool for Windows, Linux and Android: blueprint costs, market prices, assets, contracts, industry jobs and planetary colonies for every character.">
+<meta name="description" content="A free, open-source EVE Online industry tool for Windows, Linux and Android: blueprint costs, market prices, assets, alliance and public contracts, industry jobs and planetary colonies for every character.">
 <meta name="theme-color" content="#0d1117">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="EVE Retroindustry — an EVE Online industry tool">
-<meta property="og:description" content="Blueprint costs, market prices, assets, contracts, industry jobs and planetary colonies — for every character, on your own machine.">
+<meta property="og:title" content="EVE Retroindustry - an EVE Online industry tool">
+<meta property="og:description" content="Blueprint costs, market prices, assets, alliance and public contracts, industry jobs and planetary colonies - for every character, on your own machine.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EVE Retroindustry">
 <meta property="og:url" content="https://everetroindustry.github.io/">
 <!-- Purpose-built 1200x628 card. Two things were wrong before: the URL was
      relative, which the Open Graph spec does not allow and most scrapers fail to
-     resolve, and the image was the dashboard screenshot at 3.4:1 — link previews
+     resolve, and the image was the dashboard screenshot at 3.4:1 - link previews
      crop to 1.91:1, which sliced the navbar mid-word and cut the logo off
      entirely. A tester saw that preview and reported a cut-off header. -->
 <meta property="og:image" content="https://everetroindustry.github.io/img/og-card.jpg">
@@ -22,7 +22,7 @@
 <meta property="og:image:alt" content="The app's price table, comparing Jita with the secondary trade hubs">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://everetroindustry.github.io/img/og-card.jpg">
-<title>EVE Retroindustry — an EVE Online industry tool</title>
+<title>EVE Retroindustry - an EVE Online industry tool</title>
 </head>
 <body>
 <style>
@@ -178,7 +178,7 @@
   .sec-head h2 { font-size: 1.35rem; margin: 0; letter-spacing: -0.02em; }
   .sec-head p { margin: 0; color: var(--muted); font-size: .92rem; }
 
-  /* Screenshots — the product is the pitch, so give them real room. */
+  /* Screenshots - the product is the pitch, so give them real room. */
   .shots { display: grid; gap: 30px; }
   figure { margin: 0; }
   figure img {
@@ -228,7 +228,7 @@
   #lb .loading { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
   figcaption b { color: var(--text); font-weight: 600; }
 
-  /* Features as hairline-ruled rows — the same dense-table logic the app uses,
+  /* Features as hairline-ruled rows - the same dense-table logic the app uses,
      rather than a grid of rounded cards. */
   .feat { display: grid; gap: 0; grid-template-columns: 1fr; }
   @media (min-width: 760px) { .feat { grid-template-columns: 1fr 1fr; column-gap: 40px; } }
@@ -334,7 +334,7 @@
         <p class="lede">
           Blueprint costs down to raw materials, live market prices, the assets and blueprints
           your alts are sitting on, industry jobs, market orders, contracts, wallets and
-          planetary colonies — for <strong>every character</strong>, on your own machine.
+          planetary colonies - for <strong>every character</strong>, on your own machine.
         </p>
         <div class="facts">
           <span class="fact"><b>Free</b> &amp; open source (MIT)</span>
@@ -359,7 +359,7 @@
           </svg>
           <span id="dl-btn-label">Download installer</span>
         </a>
-        <div class="btn-note" id="dl-hint">Unzip, then run the setup — no admin rights needed</div>
+        <div class="btn-note" id="dl-hint">Unzip, then run the setup - no admin rights needed</div>
 
         <div class="alts">
           <span class="eyebrow">Other downloads</span>
@@ -383,11 +383,15 @@
       <div class="shots">
         <figure>
           <button class="shot-btn" type="button" data-large="img/large/dashboard.jpg" aria-label="Enlarge: Dashboard listing every character with location, training and net worth"><img src="img/dashboard.jpg" alt="Dashboard listing every character with location, training and net worth" loading="lazy"><span class="zoom">Click to enlarge</span></button>
-          <figcaption><b>Dashboard.</b> Every alt at a glance — where they're docked, what they're training, wallet and asset value, plus a warning when planetary extractors are about to run dry.</figcaption>
+          <figcaption><b>Dashboard.</b> Every alt at a glance - where they're docked, what they're training, wallet and asset value, plus a warning when planetary extractors are about to run dry.</figcaption>
         </figure>
         <figure>
           <button class="shot-btn" type="button" data-large="img/large/production-plan.jpg" aria-label="Enlarge: Production plan for a Raven showing bill of materials, fees and profit"><img src="img/production-plan.jpg" alt="Production plan for a Raven showing bill of materials, fees and profit" loading="lazy"><span class="zoom">Click to enlarge</span></button>
           <figcaption><b>Production planner.</b> Full bill of materials with stock coverage, structure and rig bonuses, job install fees, and profit against market or contract prices.</figcaption>
+        </figure>
+        <figure>
+          <button class="shot-btn" type="button" data-large="img/large/alliance-contracts.jpg" aria-label="Enlarge: Alliance contracts with filters and item search"><img src="img/alliance-contracts.jpg" alt="Alliance contracts with filters and item search" loading="lazy"><span class="zoom">Click to enlarge</span></button>
+          <figcaption><b>Alliance contracts.</b> Everything your alliance is offering, searchable by the items inside the contracts - the same filters the in-game contract window gives you.</figcaption>
         </figure>
         <figure>
           <button class="shot-btn" type="button" data-large="img/large/prices.jpg" aria-label="Enlarge: Price table comparing Jita and secondary trade hubs"><img src="img/prices.jpg" alt="Price table comparing Jita and secondary trade hubs" loading="lazy"><span class="zoom">Click to enlarge</span></button>
@@ -395,7 +399,7 @@
         </figure>
         <figure>
           <button class="shot-btn" type="button" data-large="img/large/assets.jpg" aria-label="Enlarge: Assets grouped by station, hangar and ship with ISK values"><img src="img/assets.jpg" alt="Assets grouped by station, hangar and ship with ISK values" loading="lazy"><span class="zoom">Click to enlarge</span></button>
-          <figcaption><b>Assets.</b> Everything you own, grouped by station, then hangar, then down into individual ships and containers — every level totalled in ISK, so it's obvious where your capital is parked. Corporation hangars are in there too, and the list sorts by value or by how many jumps away it is.</figcaption>
+          <figcaption><b>Assets.</b> Everything you own, grouped by station, then hangar, then down into individual ships and containers - every level totalled in ISK, so it's obvious where your capital is parked. Corporation hangars are in there too, and the list sorts by value or by how many jumps away it is.</figcaption>
         </figure>
         <figure>
           <button class="shot-btn" type="button" data-large="img/large/planets.jpg" aria-label="Enlarge: Planetary interaction colonies with extractor expiry countdowns"><img src="img/planets.jpg" alt="Planetary interaction colonies with extractor expiry countdowns" loading="lazy"><span class="zoom">Click to enlarge</span></button>
@@ -426,15 +430,15 @@
         </div>
         <div>
           <h3>Your assets counted in</h3>
-          <p>Character and corporation hangars, containers and divisions — so the shopping list is what you're actually missing.</p>
+          <p>Character and corporation hangars, containers and divisions - so the shopping list is what you're actually missing.</p>
         </div>
         <div>
           <h3>Structures and rigs</h3>
           <p>Raitaru to Sotiyo, Athanor to Tatara, with per-slot rigs and the right security multiplier.</p>
         </div>
         <div>
-          <h3>Jobs, orders, contracts, wallet</h3>
-          <p>Industry slots in use, open orders with what's still on the market, and a searchable public contract index.</p>
+          <h3>Contracts, jobs, orders, wallet</h3>
+          <p>Personal, corporation and <b>alliance</b> contracts with in-game style filters and item search, industry slots in use, open orders with what's still on the market.</p>
         </div>
         <div>
           <h3>Planetary interaction</h3>
@@ -458,11 +462,11 @@
         <div class="note warn">
           <span class="mark">First&nbsp;run</span>
           <div>
-            <div class="t">Windows shows a blue warning screen — that's expected</div>
+            <div class="t">Windows shows a blue warning screen - that's expected</div>
             <p>
               You'll see <em>“Windows protected your PC”</em>. It isn't a virus alert: Windows says
               this about any program from a small developer who hasn't bought an expensive
-              certificate. Click <strong>More info</strong>, then <strong>Run anyway</strong> — just
+              certificate. Click <strong>More info</strong>, then <strong>Run anyway</strong> - just
               the once, not every time.
             </p>
             <p class="aside">
@@ -476,7 +480,7 @@
           <div>
             <div class="t">Nothing is uploaded anywhere</div>
             <p>
-              Your characters, prices and projects stay in a file on your own computer — there's no
+              Your characters, prices and projects stay in a file on your own computer - there's no
               account to create and no server of mine involved. The app talks only to EVE's own
               servers, to read your game data and to log you in. Uninstalling leaves your data
               untouched.
@@ -499,7 +503,7 @@
         <div class="kofi-t">Free, and staying that way</div>
         <p>
           Built for my own EVE career and shared as-is. If it saves you ISK or an evening of
-          spreadsheets, a coffee is a nice way to say so — entirely optional.
+          spreadsheets, a coffee is a nice way to say so - entirely optional.
         </p>
       </div>
       <a class="btn-kofi" href="https://ko-fi.com/retrovisor" target="_blank" rel="noopener noreferrer">
@@ -525,8 +529,8 @@
 
 <script>
 /* Downloads come straight from the latest GitHub release, so the page never
-   needs editing when a version ships. If the request fails — offline, rate
-   limited, blocked — the values baked into the markup above stay put and the
+   needs editing when a version ships. If the request fails - offline, rate
+   limited, blocked - the values baked into the markup above stay put and the
    buttons still lead to the releases page. */
 (function () {
   var REPO = "EVERetroIndustry/Eve-retroindustry";
@@ -558,17 +562,17 @@
       var targets = {
         windows: { title: "Download for Windows", label: "Download installer", asset: winSetup,
                    kind: "installer", req: "Windows 10 (1809) or newer",
-                   hint: "Unzip, then run the setup — no admin rights needed" },
+                   hint: "Unzip, then run the setup - no admin rights needed" },
         linux:   { title: "Download for Linux", label: "Download AppImage", asset: appimg,
                    kind: "AppImage", req: "64-bit Linux with a desktop session",
-                   hint: "Mark it executable and run it — nothing to install" },
+                   hint: "Mark it executable and run it - nothing to install" },
         android: { title: "Download for Android", label: "Download APK", asset: apk,
                    kind: "APK, arm64", req: "arm64 device, install from unknown sources",
-                   hint: "Experimental — the interface isn't tuned for phones yet" },
-        /* There is no packaged macOS build — pretending otherwise would hand a
+                   hint: "Experimental - the interface isn't tuned for phones yet" },
+        /* There is no packaged macOS build - pretending otherwise would hand a
            Mac visitor a Windows installer. Point at running it from source. */
         mac:     { title: "No macOS build yet", label: "Run it from source", asset: null,
-                   kind: "—", req: "Python 3.11+",
+                   kind: "-", req: "Python 3.11+",
                    hint: "Windows and Linux builds are below",
                    href: "https://github.com/EVERetroIndustry/Eve-retroindustry#development-setup" }
       };
@@ -591,7 +595,7 @@
         set("dl-size", mb(t.asset.size) + " · " + t.kind);
         document.getElementById("dl-btn").href = t.asset.browser_download_url;
       } else if (t.href) {
-        set("dl-size", "—");
+        set("dl-size", "-");
         document.getElementById("dl-btn").href = t.href;
       }
 
