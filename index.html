@@ -160,6 +160,9 @@
   .btn:hover { background: #f0c65e; color: #0d1117; transform: translateY(-1px); }
   .btn:active { transform: translateY(0); }
   .btn-note { font-family: var(--mono); font-size: .72rem; color: var(--muted); margin-top: 10px; text-align: center; }
+  .unsigned { font-size: .78rem; color: var(--muted); line-height: 1.5; margin-top: 18px;
+              padding-top: 16px; border-top: 1px solid var(--rule); }
+  .unsigned em { color: #e6edf3; font-style: normal; }
 
   .alts { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--rule); }
   .alt {
@@ -360,6 +363,13 @@
           <span id="dl-btn-label">Download installer</span>
         </a>
         <div class="btn-note" id="dl-hint">Unzip, then run the setup - no admin rights needed</div>
+
+        <p class="unsigned">Windows warns about this download the first time you run it, because
+          the build is <em>not code signed</em> - a certificate costs more per year than a hobby
+          project spends. Click <em>More info &rarr; Run anyway</em>. An antivirus may occasionally
+          object on heuristics for the same reason: no signature means no reputation to go on.
+          Every release publishes <em>SHA256 checksums</em>, so you can check that the file you
+          have is the file that was built.</p>
 
         <div class="alts">
           <span class="eyebrow">Other downloads</span>
