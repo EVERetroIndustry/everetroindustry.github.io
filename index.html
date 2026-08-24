@@ -295,6 +295,13 @@
   }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 26px; align-items: center; }
   footer .sep { margin-left: auto; }
+  /* The trademark notice the Developer License asks for. Its own line rather
+     than another item in the row above: it is a paragraph, and squeezing it in
+     beside the links made both harder to read. */
+  footer .legal {
+    margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--rule);
+    font-size: .78rem; line-height: 1.6; max-width: 68ch;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
@@ -535,8 +542,15 @@
     <a href="https://github.com/EVERetroIndustry/Eve-retroindustry">GitHub</a>
     <a href="https://github.com/EVERetroIndustry/Eve-retroindustry/issues">Report a bug</a>
     <a href="mailto:everetroindustry@gmail.com">everetroindustry@gmail.com</a>
-    <span class="sep">Not affiliated with Fenris Creations. EVE Online&reg; is a trademark of Fenris Creations.</span>
+    <span class="sep">Not affiliated with Fenris Creations.</span>
   </div>
+  <p class="legal">
+    EVE Online&reg; and Fenris Creations&trade; and all related logos and other elements are
+    trademarks of Fenris Creations (formerly CCP Games). All rights are reserved worldwide.
+    All artwork, screenshots, characters, vehicles, storylines, world facts or other
+    recognizable features of the intellectual property relating to these trademarks are
+    likewise the intellectual property of Fenris Creations.
+  </p>
 </footer>
 
 <script>
